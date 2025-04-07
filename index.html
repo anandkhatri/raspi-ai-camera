@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API Buttons</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding-top: 100px;
+    }
+    button {
+      padding: 15px 25px;
+      margin: 15px;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Trigger APIs</h1>
+  <button onclick="callApi('api1')">Preview</button>
+  <button onclick="callApi('api2')">Capture</button>
+  <button onclick="callApi('api3')">Stop Preview</button>
+
+  <script>
+    function callApi(apiName) {
+      let urlMap = {
+        api1: 'https://your-api.com/endpoint1',
+        api2: 'https://your-api.com/endpoint2',
+        api3: 'https://your-api.com/endpoint3'
+      };
+
+      fetch(urlMap[apiName], { method: 'POST' })
+        .then(response => response.text())
+        .then(data => alert(`Success: ${data}`))
+        .catch(error => alert(`Error: ${error}`));
+    }
+  </script>
+</body>
+</html>
