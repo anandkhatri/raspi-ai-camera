@@ -26,13 +26,17 @@
   <script>
     function callApi(apiName) {
       let raspbeeryPiIP = "192.168.1.109"
+
       let raspbeeryPiBaseUrl = "http://" + raspbeeryPiIP + ":8000/"
+      
       let urlMap = {
-        preview: raspbeeryPiBaseUrl + 'preivew',
+        preview: raspbeeryPiBaseUrl + 'preview',
         capture: raspbeeryPiBaseUrl + 'capture',
         stop: raspbeeryPiBaseUrl + 'stop_preview'
       };
+
       console.log("API URL : ", urlMap[apiName]);
+      
       fetch(urlMap[apiName], { method: 'GET' })
         .then(response => response.text())
         .then(data => alert(`Success: ${data}`))
