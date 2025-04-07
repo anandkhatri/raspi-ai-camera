@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>API Buttons</title>
+  <title>AI Photo booth</title>
   <style>
     body {
       font-family: sans-serif;
@@ -18,20 +18,22 @@
   </style>
 </head>
 <body>
-  <h1>Trigger APIs</h1>
-  <button onclick="callApi('api1')">Preview</button>
-  <button onclick="callApi('api2')">Capture</button>
-  <button onclick="callApi('api3')">Stop Preview</button>
+  <h1>Let's operate your AI camera.</h1>
+  <button onclick="callApi('preview')">Preview</button>
+  <button onclick="callApi('capture')">Capture</button>
+  <button onclick="callApi('stop')">Stop Preview</button>
 
   <script>
     function callApi(apiName) {
+      let raspbeeryPiIP = "192.168.1.109"
+      let raspbeeryPiBaseUrl = "http://" + raspbeeryPiIP + ":8000/"
       let urlMap = {
-        api1: 'https://your-api.com/endpoint1',
-        api2: 'https://your-api.com/endpoint2',
-        api3: 'https://your-api.com/endpoint3'
+        preview: raspbeeryPiBaseUrl + 'preivew',
+        capture: raspbeeryPiBaseUrl + 'capture',
+        stop: raspbeeryPiBaseUrl + 'stop_preview'
       };
-
-      fetch(urlMap[apiName], { method: 'POST' })
+      console.log("API URL : ", urlMap[apiName]);
+      fetch(urlMap[apiName], { method: 'GET' })
         .then(response => response.text())
         .then(data => alert(`Success: ${data}`))
         .catch(error => alert(`Error: ${error}`));
