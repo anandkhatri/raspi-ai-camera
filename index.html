@@ -18,7 +18,8 @@
   </style>
 </head>
 <body>
-  <h1>Let's operate your AI camera.</h1>
+  <h1>Operate your AI camera.</h1>
+  <button onclick="callApi('health')">Health</button>
   <button onclick="callApi('preview')">Preview</button>
   <button onclick="callApi('capture')">Capture</button>
   <button onclick="callApi('stop')">Stop Preview</button>
@@ -30,6 +31,7 @@
       let raspbeeryPiBaseUrl = "http://" + raspbeeryPiIP + ":8000/"
       
       let urlMap = {
+        health: raspbeeryPiBaseUrl,
         preview: raspbeeryPiBaseUrl + 'preview',
         capture: raspbeeryPiBaseUrl + 'capture',
         stop: raspbeeryPiBaseUrl + 'stop_preview'
