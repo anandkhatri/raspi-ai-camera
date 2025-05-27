@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Photo Booth</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      padding: 50px 20px;
+      background-color: #f0f4f8;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    .button-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    button {
+      padding: 15px 25px;
+      font-size: 1rem;
+      border-radius: 10px;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s;
+      min-width: 120px;
+      flex: 1 1 40%;
+      max-width: 250px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      button {
+        font-size: 0.9rem;
+        padding: 12px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Operate your AI Camera</h1>
+
+  <div class="button-container">
+    <button onclick="callApi('health')">Check Health</button>
+    <button onclick="callApi('preview')">Start Preview</button>
+    <button onclick="callApi('capture')">Capture Photo</button>
+    <button onclick="callApi('stop')">Stop Preview</button>
+  </div>
+
+  <script>
+    function callApi(apiName) {
+      const piIP = "192.168.1.109";
+      const baseURL = `http://${piIP}:8000/`;
+
+      const urlMap = {
+        health: baseURL,
+        preview: baseURL + 'preview',
+        capture: baseURL + 'capture',
+        stop: baseURL + 'stop_preview'
+      };
+
+      const url = urlMap[apiName];
+
+      console.log("Calling API:", url);
+
+      fetch(url, { method: 'GET' })
+        .then(response => {
+          if (!response.ok) throw new Error('Network response was not ok');
+          return response.json();
+        })
+        .then(data => {
+          alert(`✅ Response:\n${JSON.stringify(data, null, 2)}`);
+        })
+        .catch(error => {
+          alert(`❌ Error:\n${error}`);
+        });
+    }
+  </script>
+</body>
+</html>
