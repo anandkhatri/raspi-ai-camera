@@ -9,9 +9,10 @@ dependencies = [
     "google-api-python-client>=2.170.0",
     "google-auth>=2.40.2",
     "google-auth-oauthlib>=1.2.2",
+    "onnxruntime>=1.22.0",
     "opencv-python>=4.11.0.86",
     "pillow>=11.2.1",
+    "pygame>=2.6.1",
     "python-multipart>=0.0.20",
-    "rembg>=2.0.66",
     "uvicorn>=0.34.2",
 ]
