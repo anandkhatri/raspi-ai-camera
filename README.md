@@ -25,6 +25,32 @@ A web-based application to operate a Raspberry Pi camera with AI background remo
 
 ## Setup & Installation
 
+### Run camera application
+
+Run the Camera application `rasp-camera` on Raspberry-pi. This application used UV package manager.
+
+1. Create the Virtual Environment
+```bash
+uv venv
+```
+
+2. Activate virutal Environment.
+```bash
+source .venv/bin/activate
+```
+
+3. Run the application locally.
+```bash
+uv run main.py
+```
+
+4. Stop the Virutal Environment
+```bash
+deactivate
+```
+
+
+
 ### Camera Control Interface
 
 1. Navigate to the operate-camera directory:
